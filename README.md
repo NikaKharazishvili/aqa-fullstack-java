@@ -1,39 +1,41 @@
-# AQA Fullstack Java
+# Java Full-Stack Test Automation Suite
 
-A collection of Java test automation projects (Maven + TestNG), covering API, database, and UI testing.
+**API • UI • DB** tests across independent Maven + TestNG modules
 
-## Projects
+![Java](https://img.shields.io/badge/Java-17-ED8B00?logo=openjdk)
+![Maven](https://img.shields.io/badge/Maven-3.9-C71A36?logo=apachemaven)
+![TestNG](https://img.shields.io/badge/TestNG-7.x-brightgreen)
+![Tools](https://img.shields.io/badge/Tools-Selenium%20·%20REST%20Assured%20·%20MySQL-000000)
 
-### [APITests](APITests) — REST Assured API Testing
-- **Tools/Tech**: Java (OOP), REST Assured, TestNG, Maven
-- **Description**: API test automation for the public [Reqres API](https://reqres.in), demonstrating REST API testing skills.
-- **Highlights**:
-  - Clean client-based structure for reusability
-  - Comprehensive test coverage for user CRUD, registration, login, delayed response, and resources
-  - Robust validation of status codes and response bodies
-- **Setup**: Run tests via `testng.xml`. Includes a `postman-project.json`, importable into Postman for manual API testing.
+---
 
-### [DBTests](DBTests) — Database Testing
-- **Tools/Tech**: Java, MySQL, TestNG, Maven
-- **Description**: A database testing project designed to retrieve and assert database information.
-- **Highlights**:
-  - Supports testing with MySQL and other databases via configuration
-  - Includes a sample `game_accounts.sql` for database setup
-  - Configurable through `db.properties` for flexibility
-- **Setup**:
-  - Import `game_accounts.sql` (in resources) into your MySQL server.
-  - Edit `db.properties` with the appropriate database URL, username, and password.
-  - Run tests via `testng.xml`.
-- **Note**: Works with other databases if `db.properties` and the SQL in `DatabaseTest.java` are adapted to the new dialect.
+## Key Features:
+- Clean, client-based architecture (reusable API clients, Page Object Model for UI)
+- Layered coverage: API, UI, and DB tests as independent Maven modules
+- Config-driven (`db.properties`) — swap databases without touching test code
+- Includes a Postman collection (`postman-project.json`) for manual API testing alongside the automated suite
 
-### [UITests](UITests) — Selenium UI Testing
-- **Tools/Tech**: Java (OOP, POM), Selenium, TestNG, Maven
-- **Description**: Automated test cases for [Practice Automation](https://practice-automation.com/), demonstrating Selenium automation skills.
-- **Highlights**:
-  - Clean Page Object Model structure for reusability
-  - Organized with TestNG suites for test execution
-  - Maintainable code with reusable components
-- **Setup**: Run tests via `testng.xml`.
+---
+
+## Project Structure:
+- **APITests/**: REST Assured client for the [Reqres API](https://reqres.in). Covers user CRUD, registration, login, delayed response, and resources, with status code and response body validation
+- **DBTests/**: Data integrity tests against a sample `game_accounts` MySQL DB. DB target configurable via `db.properties`; SQL setup script included under `resources`
+- **UITests/**: Selenium POM suite for [Practice Automation](https://practice-automation.com/). Organized into TestNG suites with reusable, maintainable components
+
+---
+
+## Run Tests
+```bash
+mvn test    # Runs everything via testng.xml
+```
+Each module (`APITests`, `DBTests`, `UITests`) can also be run independently by opening its own `testng.xml`.
+
+**DB setup**: import `game_accounts.sql` (in `resources`) into MySQL, then set the connection URL, username, and password in `db.properties`.
+
+## Important Note
+The suite is complete and functional; failures occur due to protections added to public test environments after development, not implementation issues.
+- `APITests` worked previously, but `reqres.in` now enforces CAPTCHA, blocking automation.
+- `UITests` were stable, but the demo site intermittently returns "Too Many Requests".
 
 ## Requirements
-- Java and Maven installed
+- Java 17+ and Maven installed
