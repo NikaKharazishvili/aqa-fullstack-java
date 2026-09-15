@@ -36,6 +36,3 @@ Each module (`APITests`, `DBTests`, `UITests`) can also be run independently by 
 The suite is complete and functional; failures occur due to protections added to public test environments after development, not implementation issues.
 - `APITests` worked previously, but `reqres.in` now enforces CAPTCHA, blocking automation.
 - `UITests` were stable, but the demo site intermittently returns "Too Many Requests".
-
-## Requirements
-- Java 17+ and Maven installed
